@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Sistema de color base personalizado (libre de gris azulado) */
+  --color-background-primary: #000000;
+  --color-text-primary: #fefefe;
+  --color-text-secondary: #a1a1aa; /* Gris neutro suave */
+  --color-accent: #008ae1;          /* Color de acento */
+}
+
+/* Reset básico de estilos */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos base del sistema */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #000000; /* Fondo global puro */
+}
+
+body {
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+  Estructura base para el Layout & Grid System futuro (sin UI)
+  Centraliza el contenido principal y define el comportamiento responsivo del grid
+*/
+.layout-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;  /* px-6 para móviles */
+  padding-right: 1.5rem; /* px-6 para móviles */
+}
+
+@media (min-width: 768px) {
+  .layout-container {
+    padding-left: 2rem;  /* px-8 para tablets */
+    padding-right: 2rem; /* px-8 para tablets */
+  }
+}
+
+/* Layout Grid System de 12 columnas listo para usar */
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem; /* gap de 24px */
+}
+
+@media (min-width: 768px) {
+  .layout-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem; /* gap de 32px en pantallas grandes */
+  }
+}
