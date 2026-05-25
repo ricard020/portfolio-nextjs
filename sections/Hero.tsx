@@ -4,17 +4,26 @@ import React from "react";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen w-full flex-col justify-between bg-background-primary py-8 md:py-12 animate-fade-in-up">
+    <section className="relative flex min-h-screen w-full flex-col justify-between bg-background-primary py-8 md:py-12 animate-fade-in-up overflow-hidden">
+      {/* Capa de profundidad: radial gradient sutil que eleva el contenido central del fondo plano */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 30% 50%, rgba(0,138,225,0.04) 0%, transparent 70%)",
+        }}
+      />
       {/* 
         A. Header superior integrado (dentro del Hero)
         Alineado al contenedor y al sistema de grid
       */}
       <header className="layout-container w-full">
-        <div className="flex items-center justify-between border-b border-white/5 pb-6">
+        <div className="flex items-center justify-between border-b border-white/[0.06] pb-6">
           {/* Logo "JR" - SVG minimalista y técnico estático */}
           <div className="flex items-center gap-3">
             <svg
-              className="h-8 w-8 text-accent hover:opacity-85 transition-opacity duration-300"
+              className="h-8 w-8 text-accent opacity-90 hover:opacity-100 transition-opacity duration-300"
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -45,18 +54,18 @@ export default function Hero() {
                 strokeLinejoin="round"
               />
             </svg>
-            <span className="font-sans text-xs tracking-wider text-text-secondary select-none font-medium">
+            <span className="font-sans text-[11px] tracking-[0.15em] text-text-secondary/50 select-none font-medium uppercase">
               Portfolio
             </span>
           </div>
 
           {/* Selector de idioma minimalista (ES / EN) */}
-          <div className="flex items-center gap-2 font-sans text-xs tracking-wide">
-            <button className="text-text-primary hover:text-accent transition-colors duration-200 cursor-pointer px-1 py-0.5 font-medium">
+          <div className="flex items-center gap-2 font-sans text-[11px] tracking-[0.15em] uppercase">
+            <button className="text-text-primary/90 hover:text-accent transition-colors duration-200 cursor-pointer px-1.5 py-0.5 font-semibold">
               ES
             </button>
-            <span className="text-white/20 select-none">/</span>
-            <button className="text-text-secondary hover:text-accent transition-colors duration-200 cursor-pointer px-1 py-0.5 font-medium">
+            <span className="text-white/10 select-none">|</span>
+            <button className="text-text-secondary/50 hover:text-accent transition-colors duration-200 cursor-pointer px-1.5 py-0.5 font-semibold">
               EN
             </button>
           </div>
@@ -67,7 +76,7 @@ export default function Hero() {
         B. Bloque Central - Contenido Principal
         Alineado perfectamente con el Grid de 12 columnas existente
       */}
-      <div className="layout-container flex flex-1 items-center py-16 md:py-24">
+      <div className="layout-container relative z-10 flex flex-1 items-center py-16 md:py-24">
         <div className="layout-grid w-full items-center">
           {/* 
             Alineación precisa en el Grid de 12 columnas:
@@ -78,27 +87,34 @@ export default function Hero() {
           */}
           <div className="col-span-1 md:col-start-2 md:col-span-9 lg:col-start-2 lg:col-span-8 flex flex-col items-start z-10">
             
-            {/* Etiqueta de Rol Limpia y Geométrica */}
-            <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase select-none mb-4 md:mb-6">
+            {/* Etiqueta de Rol — deliberadamente delgada para ceder protagonismo al título */}
+            <span className="text-[11px] font-semibold tracking-[0.25em] text-accent/80 uppercase select-none mb-5 md:mb-7">
               Frontend Developer
             </span>
 
-            {/* Título Principal - Elemento dominante con fuerte peso visual y tracking-tighter */}
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-text-primary leading-[1.05] md:leading-[0.95] mb-6 md:mb-8">
-              Engineering high-performance user interfaces with <span className="text-accent">structural integrity</span>.
+            {/* Título Principal — el único elemento visualmente absoluto de la pantalla */}
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black tracking-tighter text-text-primary leading-[1.05] md:leading-[0.92] mb-7 md:mb-9">
+              Engineering high-performance user interfaces with{" "}
+              <span
+                className="text-accent"
+                style={{ WebkitTextStroke: "0px" }}
+              >
+                structural integrity
+              </span>
+              .
             </h1>
 
-            {/* Subtítulo - Contraste jerárquico suavizado (texto secundario con opacidad controlada) */}
-            <p className="max-w-xl text-base md:text-lg text-text-secondary/70 leading-relaxed font-sans mb-8 md:mb-10">
+            {/* Subtítulo — reducido al mínimo de presencia para dejar al título como rey */}
+            <p className="max-w-lg text-sm md:text-base text-text-secondary/55 leading-[1.8] font-sans mb-10 md:mb-12">
               I build production-grade web applications focused on modular architecture, clean rendering pathways, and strict attention to visual engineering.
             </p>
 
-            {/* CTA Principal - Segundo elemento de importancia, más ancho, elevación en hover y glow suave */}
+            {/* CTA Principal — presencia clara sin competir con el título */}
             <div className="w-full sm:w-auto">
-              <button className="group relative flex w-full sm:w-auto items-center justify-center gap-3 rounded border border-accent/40 bg-accent/5 px-8 py-3.5 font-sans text-xs font-bold tracking-widest text-accent uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-background-primary hover:shadow-[0_0_20px_rgba(0,138,225,0.3)] cursor-pointer">
+              <button className="group relative flex w-full sm:w-auto items-center justify-center gap-3 rounded-[3px] border border-accent/50 bg-accent/8 px-9 py-4 font-sans text-[11px] font-bold tracking-[0.2em] text-accent uppercase transition-all duration-500 ease-out hover:-translate-y-[3px] hover:bg-accent hover:border-accent hover:text-black hover:shadow-[0_8px_32px_rgba(0,138,225,0.25)] cursor-pointer">
                 View Work
                 <svg
-                  className="h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1"
+                  className="h-3.5 w-3.5 transform transition-transform duration-500 ease-out group-hover:translate-x-1.5"
                   viewBox="0 0 12 12"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -159,8 +175,8 @@ export default function Hero() {
       </div>
 
       {/* Footer del Hero - Limpio y estructural */}
-      <footer className="layout-container w-full mt-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-white/5 pt-6 font-sans text-[10px] tracking-wider text-text-secondary gap-4 sm:gap-0">
+      <footer className="layout-container relative z-10 w-full mt-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-white/[0.06] pt-6 font-sans text-[10px] tracking-[0.15em] text-text-secondary/40 uppercase gap-4 sm:gap-0">
           <div>
             <span>RICARDO PORTFOLIO</span>
           </div>
