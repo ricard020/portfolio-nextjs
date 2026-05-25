@@ -68,3 +68,22 @@ body {
     gap: 2rem; /* gap de 32px en pantallas grandes */
   }
 }
+
+/* Animaciones y transiciones premium (CSS-First) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 0; /* Asegura estado inicial invisible antes de comenzar animación */
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
