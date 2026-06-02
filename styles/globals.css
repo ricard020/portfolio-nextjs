@@ -22,7 +22,7 @@
 /* Estilos base del sistema */
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-color: #000000; /* Fondo global puro */
 }
@@ -67,6 +67,186 @@ body {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 2rem; /* gap de 32px en pantallas grandes */
   }
+}
+
+/* ================================================
+   NAVBAR — Sistema de navegación fija
+   ================================================ */
+
+/* Estado base de la navbar */
+.navbar-transparent {
+  background-color: #121414;
+}
+
+/* Estado con scroll */
+.navbar-scrolled {
+  background-color: #121414;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* Contenedor interno de la navbar */
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+@media (min-width: 768px) {
+  .navbar-inner {
+    height: 64px;
+  }
+}
+
+/* Logo "JR" */
+.navbar-logo {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  flex-shrink: 0;
+}
+
+.navbar-logo:hover {
+  opacity: 0.7;
+}
+
+/* Links de navegación — centro */
+.navbar-links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-links {
+    display: flex;
+    gap: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar-links {
+    gap: 2.75rem;
+  }
+}
+
+/* Cada link individual */
+.navbar-link {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.25rem 0;
+  transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: var(--color-text-primary);
+}
+
+/* Link activo — subrayado animado */
+.navbar-link-active {
+  color: var(--color-text-primary);
+}
+
+.navbar-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: var(--color-accent);
+  border-radius: 1px;
+  animation: navUnderlineIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes navUnderlineIn {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Zona derecha — idioma + globo */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Selector de idioma */
+.navbar-lang {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navbar-lang-btn {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(161, 161, 170, 0.35);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.375rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-lang-btn:hover {
+  color: var(--color-accent);
+}
+
+/* Idioma activo */
+.navbar-lang-active {
+  color: rgba(161, 161, 170, 0.7);
+}
+
+/* Divisor "|" */
+.navbar-lang-divider {
+  color: rgba(255, 255, 255, 0.08);
+  font-size: 0.625rem;
+  user-select: none;
+}
+
+/* Botón globo */
+.navbar-globe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(161, 161, 170, 0.4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-globe:hover {
+  color: var(--color-accent);
+}
+
+/* Línea inferior decorativa */
+.navbar-border {
+  height: 1px;
+  background-color: #404752;
 }
 
 /* Animaciones y transiciones premium (CSS-First) */
